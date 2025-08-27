@@ -24,8 +24,8 @@ from module.ui.ui import UI
 from module.ui_white.assets import REWARD_1_WHITE, REWARD_GOTO_COMMISSION_WHITE
 
 COMMISSION_SWITCH = Switch('Commission_switch', is_selector=True)
-COMMISSION_SWITCH.add_status('daily', COMMISSION_DAILY)
-COMMISSION_SWITCH.add_status('urgent', COMMISSION_URGENT)
+COMMISSION_SWITCH.add_state('daily', COMMISSION_DAILY)
+COMMISSION_SWITCH.add_state('urgent', COMMISSION_URGENT)
 COMMISSION_SCROLL = Scroll(COMMISSION_SCROLL_AREA, color=(247, 211, 66), name='COMMISSION_SCROLL')
 
 
@@ -157,7 +157,7 @@ class RewardCommission(UI, InfoHandler):
         # Add shortest
         no_shortest = run.delete(SelectedGrids(['shortest']))
         if no_shortest.count + running_count < self.max_commission:
-            if no_shortest.count < run.count:
+            if daily.count:
                 logger.info('Not enough commissions to run, add shortest daily commissions')
                 COMMISSION_FILTER.load(SHORTEST_FILTER)
                 shortest = COMMISSION_FILTER.apply(daily[::-1], func=self._commission_check)
@@ -363,7 +363,8 @@ class RewardCommission(UI, InfoHandler):
                 raise GameStuckError('Triggered commission list flashing bug')
 
             # Click
-            if self.appear_then_click(COMMISSION_START, offset=(5, 20), interval=7):
+            if self.match_template_color(COMMISSION_START, offset=(5, 20), interval=7):
+                self.device.click(COMMISSION_START)
                 self.interval_reset(COMMISSION_ADVICE)
                 comm_timer.reset()
                 continue
@@ -552,11 +553,12 @@ class RewardCommission(UI, InfoHandler):
                     continue
                 if self.ui_main_appear_then_click(page_reward, interval=3):
                     self.interval_reset(GET_SHIP)
-                    click_timer.reset()
+                    # no need to reset click_timer, just instant click REWARD_1
+                    # click_timer.reset()
                     continue
                 # Check GET_SHIP at last to handle random white background at page_main
                 for button in [GET_SHIP]:
-                    if self.appear(button, interval=1):
+                    if click_timer.reached() and self.appear(button, interval=1):
                         self.ensure_no_info_bar(timeout=1)
                         drop.add(self.device.image)
 

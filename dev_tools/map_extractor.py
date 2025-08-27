@@ -274,6 +274,43 @@ DIC_SIREN_NAME_CHI_TO_ENG = {
     'tiancheng_m_zhongxun': 'AmagiMasked',
     'tiancheng_m_zhanlie': 'AmagiMasked',
     'tiancheng_m_hangmu': 'AmagiMasked',
+
+    # Tempesta and the Sleeping Sea
+    'hemuhao': 'Amity',
+    'pucimaosi': 'Portsmouth',
+    'mali': 'MaryCeleste',
+    'fengfan_haigu03': 'fengfanhaigu03',
+
+    # Dangerous Inventions Incoming
+    'tolove_renxing01': 'ToLoveNana01',
+    'tolove_renxing02': 'ToLoveYui02',
+    'tolove_renxing03': 'ToLoveNana03',
+    'tolove_renxing04': 'ToLoveHaruna04',
+    'tolove_renxing05': 'ToLoveGoldenDarkness05',
+
+    # Paradiso of Shackled Light
+    'boerzhanuo_alter': 'BolzanoAlter',
+    'kaisa_alter': 'CesareAlter',
+    'teluntuo_alter': 'TrentoAlter',
+    'sairenboss26': 'SirenBoss26',
+    'sairenboss25': 'SirenBoss25',
+
+    # A Rose on the High Tower
+    'shengli': 'Victorious',
+    'huangjiaxiangshu': 'RoyalOak',
+
+    # The Alchemist and the Tower of Horizons
+    'lianjin_II_sairenquzhu': 'DDalchemist2',
+    'lianjin_II_sairenqingxun': 'CLalchemist2',
+    'lianjin_II_sairenzhongxun': 'CAalchemist2',
+    'lianjin_II_sairenzhanlie': 'BBalchemist2',
+    'lianjin_II_sairenhangmu': 'CValchemist2',
+
+    # Secrets of the Abyss
+    'jiulaimu_ruanniguai': 'Jiulaimu_Mud',
+    'jiulaimu_shixianggui': 'Jiulaimu_Statue',
+    'jiulaimu_emo': 'Jiulaimu_Demon',
+    'youlin_ylsb': 'Jiulaimu_Ghost',
 }
 
 

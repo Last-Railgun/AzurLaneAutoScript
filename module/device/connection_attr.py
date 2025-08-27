@@ -8,7 +8,7 @@ from adbutils import AdbClient, AdbDevice
 from module.base.decorator import cached_property
 from module.config.config import AzurLaneConfig
 from module.config.env import IS_ON_PHONE_CLOUD
-from module.config.utils import deep_iter
+from module.config.deep import deep_iter
 from module.device.method.utils import get_serial_pair
 from module.exception import RequestHumanTakeover
 from module.logger import logger
@@ -77,6 +77,12 @@ class ConnectionAttr:
         serial = serial.replace('。', '.').replace('，', '.').replace(',', '.').replace('：', ':')
         # 127.0.0.1.5555
         serial = serial.replace('127.0.0.1.', '127.0.0.1:')
+        # Mumu12 5.0 shows double serials, some people may just copy-paste it
+        # 5555,16384
+        if ',' in serial:
+            left, _, right = serial.partition(',')
+            if left.startswith('55') and right.startswith('16'):
+                serial = right
         # 16384
         try:
             port = int(serial)
